@@ -1,18 +1,14 @@
 <?php
-if (isset($_REQUEST['email'])) {
+if($_POST["submit"]) {
+$recipient = "sai.chittala@gmail.com"; //my email
+$subject = 'Email message from Point Plumbing';
+$name = $_POST ["yourName"];
+$email = $_POST["yourEmail"];
+$subject = $_POST["subject"];
+$message = $_POST["message-me"];
 
-  $name = $_REQUEST['name'] ;
-  $email = $_REQUEST['email'] ;
-  $subject = $_REQUEST['subject'] ;
-  $message = $_REQUEST['message'] ;
-  mail("sai.chittala@gmail.com", $subject,
-  $message, "From:" . $email);
-
-  echo "Merci! Votre requête a été soumise à notre webmestre.";
-
-} else {
-
-  echo "Erreur: Prière de remplir le formulaire.";
-
+$mailBody="Name: $name\nEmail: $email\n\n$message";
+$mail($recipient, $subject, $mailBody, "From: $name <$email>");
+$thankYou="<p>Thank you! We will be in contact with you shortly.</p>";
 }
 ?>
