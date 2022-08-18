@@ -1,23 +1,18 @@
 <?php
+if (isset($_REQUEST['email'])) {
 
-  $receiving_email_address = 'sai.chittala@gmail.com';
+  $name = $_REQUEST['name'] ;
+  $email = $_REQUEST['email'] ;
+  $subject = $_REQUEST['subject'] ;
+  $message = $_REQUEST['message'] ;
+  mail("sai.chittala@gmail.com", $subject,
+  $message, "From:" . $email);
 
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
+  echo "Merci! Votre requête a été soumise à notre webmestre.";
 
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $_POST['sai.chittala@gmail.com'] $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
+} else {
 
-  echo $contact->send();
+  echo "Erreur: Prière de remplir le formulaire.";
+
+}
 ?>
